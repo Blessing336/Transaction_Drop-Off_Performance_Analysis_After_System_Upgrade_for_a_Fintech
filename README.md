@@ -44,12 +44,12 @@ This is the central fact table containing raw records of all user transaction at
 
 Some of the Columns Used are:
 
-* TransactionID: Unique identifier for each transaction attempt.
-* TransactionDateTime: Timestamp used for monthly grouping (to compare pre- and post-upgrade).
-* TransactionValue: Monetary value of the transaction. This is the main metric for total transaction value, drop-off value, and failed transaction value calculations.
-* TransactionStatus: Categorical column indicating whether the transaction was Successful, Dropped, or Failed.
-* DropOffReason: Explains why a transaction dropped (e.g., User Exit, OTP Failure, Timeout).
-* DropOffPage: Indicates where in the journey the drop-off occurred (e.g., OTP Verification Page, Transfer Summary Page).
+* **TransactionID:** Unique identifier for each transaction attempt.
+* **TransactionDateTime:** Timestamp used for monthly grouping (to compare pre- and post-upgrade).
+* **TransactionValue:** Monetary value of the transaction. This is the main metric for total transaction value, drop-off value, and failed transaction value calculations.
+* **TransactionStatus:** Categorical column indicating whether the transaction was Successful, Dropped, or Failed.
+* **DropOffReason:** Explains why a transaction dropped (e.g., User Exit, OTP Failure, Timeout).
+* **DropOffPage:** Indicates where in the journey the drop-off occurred (e.g., OTP Verification Page, Transfer Summary Page).
 
 Metrics Derived from This Table: Total monthly transaction count and value, Drop-off share of value (as % of total), Retry success rate, Drop-off reason and page distribution, Segment analysis by transaction value thresholds (e.g., ₦500,000+)
 
