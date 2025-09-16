@@ -6,7 +6,7 @@ The analysis covered a 5-month period from October 2024 to February 2025, compar
 
 <br/>
 
-<br/>
+
 
 # Project Questions
 
@@ -34,8 +34,6 @@ This project was designed to assess the impact of a January 2025 system upgrade 
 
 <br/>
 
-<br/>
-
 # Data Structure
 
 The project analysis was conducted using a transactional dataset structured across one main table; FactTransactions.
@@ -56,9 +54,7 @@ Some of the Columns Used are:
 Metrics Derived from This Table: Total monthly transaction count and value, Drop-off share of value (as % of total), Retry success rate, Drop-off reason and page distribution, Segment analysis by transaction value thresholds (e.g., ₦500,000+)
 
 
-<img src="Data Structure.png"/>
-
-<br/>
+<img src="Resources\DataStructure.png">
 
 <br/>
 
@@ -112,7 +108,6 @@ WHERE TransactionValue > 500000 AND DropOffReason IS NOT NULL
 
 <br/>
 
-<br/>
 
 # Executive Summary
 
@@ -121,8 +116,6 @@ Over the 5-month analysis period spanning October 2024 to February 2025, a criti
 **The OTP Verification Page alone accounted for 49,619 drop-offs and the highest average transaction loss per session (₦322,211)**, indicating abandonment at one of the most sensitive user points. **Furthermore, success after retries declined from 47% pre-upgrade to 34% post-upgrade**, suggesting customers are not only failing more often but are also increasingly unlikely to recover from failed attempts. Alarmingly, **70%** of all drop-offs were user-initiated exits, not system errors, and User Exits accounted for over 62,000 high-value (₦500K+) transaction losses. These figures underscore eroding user trust and platform experience.
 
 To combat this rapidly worsening trajectory, we recommend that the Product teams **immediately prioritize UX and authentication flow redesign**, particularly of the OTP Verification Page. Without swift intervention, the business risks systemic revenue erosion, poor customer retention, and long-term brand damage.
-
-<br/>
 
 <br/>
 
@@ -156,7 +149,7 @@ To combat this rapidly worsening trajectory, we recommend that the Product teams
         WHERE Row_Num = 1
         AND TransactionStatus = 'Drop-Off';
 
-<img src = "1.1.png">
+<img src = "Resources\1.1.png">
 
 During the pre-upgrade period, TransactIQ recorded a total drop-off transaction value of **₦47.8 billion**, spread across **147,338 transactions**. In contrast, the period after the upgrade (January to February 2025) saw this drop sharply to **₦28.7 billion** across **89,486 transactions**. This represents a **59.03%** decline in drop-off transaction value and a **59.74%** decline in drop-off transaction count.
 
@@ -191,7 +184,7 @@ During the pre-upgrade period, TransactIQ recorded a total drop-off transaction 
         GROUP BY Month
         ORDER BY  MIN(DATEPART(YEAR, TransactionDateTime)), MIN(DATEPART(MONTH, TransactionDateTime))
 
-<img src = "1.2.png">
+<img src = "Resources\1.2.png">
 
 Before the upgrade, TransactIQ’s platform maintained a healthy transaction ecosystem. **Every month during this period, the value of successful transactions outperformed that of both dropped and failed transactions by a significant margin**. This positive gap continued in November and December.
 
@@ -223,7 +216,7 @@ It’s no longer just that fewer transactions are happening, it's that **when th
         GROUP BY Month
         ORDER BY  MIN(DATEPART(YEAR, TransactionDateTime)), MIN(DATEPART(MONTH, TransactionDateTime))
 
-<img src = "1.3.png">
+<img src = "Resources\1.3.png">
 
 **In the months before the upgrade (October to December 2024)**, the share of total transaction value lost to drop-offs was relatively moderate, **remaining within a narrow and manageable range of 23% to 26%**. This consistent downward slope reflected a system that, while not perfect, was increasingly efficient at guiding transactions to completion and recovering potential revenue.
 
@@ -257,7 +250,7 @@ However, a massive operational and financial failure happened post-upgrade. In J
         GROUP BY Month
         ORDER BY  MIN(DATEPART(YEAR, TransactionDateTime)), MIN(DATEPART(MONTH, TransactionDateTime));
 
-<img src = "1.4.png">
+<img src = "Resources\1.4.png">
 
 **Before upgrade, customers who encountered issues during transactions could retry and often succeed**. In October 2024, **47% of all retries ended in success**. Then, in the months following, that downward trajectory worsened. By January 2025, only 34.9% of retries were successful, and in February, it held just slightly above at 34.5%. This means that **almost two-thirds of customers who attempted to retry still failed to complete their transactions**.
 
@@ -288,7 +281,7 @@ However, a massive operational and financial failure happened post-upgrade. In J
         CAST(100.0 * TransactionValue/SUM(TransactionValue) OVER() AS DECIMAL(4,2)) AS Percent_Value
         FROM Count_Value;
 
-<img src = "2.1.png">
+<img src = "Resources\2.1.png">
 
 **Our customers are walking away.** Between October 2024 and February 2025, "User Exit" accounted for over **70% of all drop-offs**, both in count **(252,641 transactions) and value (₦81.7 billion)**. In contrast, **OTP Failures made up 27% (97,295 transactions worth ₦31.5 billion)**, while **Timeouts barely registered at 3%**.
 
@@ -303,7 +296,7 @@ However, a massive operational and financial failure happened post-upgrade. In J
         WHERE TransactionValue > 500000 AND DropOffReason IS NOT NULL
         GROUP BY DropOffReason
 
-<img src = "2.2.png">
+<img src = "Resources\2.2.png">
 
 **Customers are also taking the highest-value transactions with them**. Of all drop-offs involving transactions above **₦500,000**, User Exit was responsible for **62,450** cases (over **70%** of all high-value drop-offs). In comparison, **OTP Failure accounted for 24,183** cases, and **Timeouts just 2,686**.
 
@@ -320,7 +313,7 @@ However, a massive operational and financial failure happened post-upgrade. In J
         GROUP BY DropOffPage
         ORDER BY Frequency DESC;
 
-<img src = "2.3.png">
+<img src = "Resources\2.3.png">
 
 Post-upgrade, the **OTP verification page** alone saw **49,619 drop-offs**, narrowly edging out the **Transfer Summary Page (49,381)**. But while both pages had nearly equal abandonment frequencies, the OTP Verification Page stood out for one reason; it carried the **highest average transaction value per drop (₦322,211)**. That’s **₦1,439** more per transaction than the Transfer Summary Page, which averaged **₦320,771**.
 
@@ -359,7 +352,6 @@ Post-upgrade, the **OTP verification page** alone saw **49,619 drop-offs**, narr
 
 <br/>
 
--- <br/>
 
 ### 2.1 Most customers are choosing to abandon transactions intentionally rather than due to system errors
 
